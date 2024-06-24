@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using Infrastructure.Models;
 using Infrastructure.Repositories;
-using VacinaAPI2.Vacinas.Entities;
+using VacinaAPI.Vacinas.Entities;
 
-namespace VacinaAPI2.Vacinas;
+namespace VacinaAPI.Vacinas;
 
 public class GetVacinasHandlers
 {

@@ -1,6 +1,6 @@
 using Infrastructure;
-using VacinaAPI2;
-using VacinaAPI2.Vacinas;
+using VacinaAPI;
+using VacinaAPI.Vacinas;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 

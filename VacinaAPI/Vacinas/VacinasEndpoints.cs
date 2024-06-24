@@ -1,4 +1,4 @@
-﻿namespace VacinaAPI2.Vacinas;
+﻿namespace VacinaAPI.Vacinas;
 
 public static class VacinasEndpoints
 {

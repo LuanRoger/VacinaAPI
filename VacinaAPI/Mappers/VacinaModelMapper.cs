@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Infrastructure.Models;
-using VacinaAPI2.Vacinas.Entities;
+using VacinaAPI.Vacinas.Entities;
 
-namespace VacinaAPI2.Mappers;
+namespace VacinaAPI.Mappers;
 
 public class VacinaModelMapper : Profile
 {

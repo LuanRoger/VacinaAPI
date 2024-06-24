@@ -1,6 +1,6 @@
-﻿using VacinaAPI2.Mappers;
+﻿using VacinaAPI.Mappers;
 
-namespace VacinaAPI2;
+namespace VacinaAPI;
 
 public static class DependencyInjection
 {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using VacinaAPI2.Vacinas.Entities;
+using VacinaAPI.Vacinas.Entities;
 
-namespace VacinaAPI2.Vacinas;
+namespace VacinaAPI.Vacinas;
 
 public static class GetVacinas
 {

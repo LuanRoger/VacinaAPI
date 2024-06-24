@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VacinaAPI2", "VacinaAPI2\VacinaAPI2.csproj", "{7DBF63BA-3E3F-4FAC-9A57-7E9AD3AAB7CC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VacinaAPI", "VacinaAPI\VacinaAPI.csproj", "{7DBF63BA-3E3F-4FAC-9A57-7E9AD3AAB7CC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{668C6969-F4AE-48C3-AF25-832B150521A9}"
 EndProject
