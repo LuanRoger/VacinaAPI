@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using VacinaAPI.Vacinas.Entities;
+using VacinaAPI.Vacinas.Handlers;
 
 namespace VacinaAPI.Vacinas;
 
@@ -24,12 +25,22 @@ public static class GetVacinas
         
         return vacina is not null ? Results.Ok(vacina) : Results.NotFound();
     }
-    /*public static Task<IResult> GetVacinasByFabricante(string fabricante)
+    public async static Task<IResult> GetVacinasByFabricante(
+        HttpContext _,
+        [FromRoute] string fabricante,
+        [FromServices] GetVacinasHandlers handlers)
     {
+        var vacinas = await handlers.GetVacinasByFabricante(fabricante);
         
+        return vacinas is not null ? Results.Ok(vacinas) : Results.NotFound();
     }
-    public static Task<IResult> GetVacinasByLote(string lote)
+    public async static Task<IResult> GetVacinasByLote(
+        HttpContext _,
+        [FromRoute] string lote,
+        [FromServices] GetVacinasHandlers handlers)
     {
-        
-    }*/
+        Vacina? vacina = await handlers.GetVacinasByLote(lote);
+
+        return vacina is not null ? Results.Ok(vacina) : Results.NotFound();
+    }
 }

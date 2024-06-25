@@ -3,7 +3,7 @@ using Infrastructure.Models;
 using Infrastructure.Repositories;
 using VacinaAPI.Vacinas.Entities;
 
-namespace VacinaAPI.Vacinas;
+namespace VacinaAPI.Vacinas.Handlers;
 
 public class GetVacinasHandlers
 {
@@ -34,6 +34,28 @@ public class GetVacinasHandlers
         if (vacina is null)
             return null;
         
-        return _mapper.Map<Vacina>(vacina);
+        Vacina? vacinaRead = _mapper.Map<Vacina>(vacina);
+        return vacinaRead;
+    }
+
+    public async Task<IReadOnlyList<Vacina>?> GetVacinasByFabricante(string fabricante)
+    {
+        var vacinas = await _vacinasRepository.GetVacinasByFabricante(fabricante);
+        if (vacinas is null)
+            return null;
+        
+        var vacinasRead = vacinas.Select(_mapper.Map<Vacina>)
+            .ToList();
+        return vacinasRead;
+    }
+
+    public async Task<Vacina?> GetVacinasByLote(string lote)
+    {
+        VacinaModel? vacina = await _vacinasRepository.GetVacinaByLote(lote);
+        if (vacina is null)
+            return null;
+        
+        Vacina? vacinaRead = _mapper.Map<Vacina>(vacina);
+        return vacinaRead;
     }
 }
