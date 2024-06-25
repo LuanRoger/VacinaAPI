@@ -1,7 +1,7 @@
 using Infrastructure;
 using VacinaAPI;
-using VacinaAPI.PostoVacinacao;
-using VacinaAPI.Vacinas;
+using VacinaAPI.Endpoints.PostosVacinacao;
+using VacinaAPI.Endpoints.Vacinas;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 

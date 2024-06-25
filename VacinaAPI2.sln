@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VacinaAPI", "VacinaAPI\Vaci
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{668C6969-F4AE-48C3-AF25-832B150521A9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{82C5D7D1-B720-475F-9366-BCF06D869959}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{668C6969-F4AE-48C3-AF25-832B150521A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{668C6969-F4AE-48C3-AF25-832B150521A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{668C6969-F4AE-48C3-AF25-832B150521A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82C5D7D1-B720-475F-9366-BCF06D869959}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82C5D7D1-B720-475F-9366-BCF06D869959}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82C5D7D1-B720-475F-9366-BCF06D869959}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82C5D7D1-B720-475F-9366-BCF06D869959}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

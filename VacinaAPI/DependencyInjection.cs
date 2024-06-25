@@ -1,6 +1,7 @@
-﻿using VacinaAPI.Mappers;
-using VacinaAPI.PostoVacinacao.Handlers;
-using VacinaAPI.Vacinas.Handlers;
+﻿using Application.PostoVacinacao.Handlers;
+using Application.PostoVacinacao.Mappers;
+using Application.Vacinas.Handlers;
+using Application.Vacinas.Mappers;
 
 namespace VacinaAPI;
 
