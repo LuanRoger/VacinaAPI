@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Models;
 
-[Table("Vacinas")]
+[Table("vacinas")]
 [Index(nameof(lote), IsUnique = true)]
 public class VacinaModel
 {

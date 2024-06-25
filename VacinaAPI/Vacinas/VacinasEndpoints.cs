@@ -2,20 +2,20 @@
 
 public static class VacinasEndpoints
 {
-    public static IEndpointRouteBuilder MapVacinasEndpoints(this IEndpointRouteBuilder endpoints)
+    public static IEndpointRouteBuilder MapVacinasEndpoints(this IEndpointRouteBuilder builder)
     {
-        endpoints.MapGet("posto/{id:int}", GetVacinas.GetPostoVacinas);
-        endpoints.MapGet("{id:int}", GetVacinas.GetVacinasById);
-        endpoints.MapGet("fabricante/{fabricante:required}", GetVacinas.GetVacinasByFabricante);
-        endpoints.MapGet("lote/{lote:required}", GetVacinas.GetVacinasByLote);
+        builder.MapGet("posto/{id:int}", GetVacinas.GetPostoVacinas);
+        builder.MapGet("{id:int}", GetVacinas.GetVacinasById);
+        builder.MapGet("fabricante/{fabricante:required}", GetVacinas.GetVacinasByFabricante);
+        builder.MapGet("lote/{lote:required}", GetVacinas.GetVacinasByLote);
 
-        endpoints.MapPost("/", PostVacinas.PostVacina);
+        builder.MapPost("/", PostVacinas.PostVacina);
 
-        endpoints.MapPut("/", PutVacinas.PutVacinaById);
+        builder.MapPut("/", PutVacinas.PutVacinaById);
         
-        endpoints.MapDelete("/{id:int}", DeleteVacinas.DeleteVacinaById);
-        endpoints.MapDelete("/lote/{lote:required}", DeleteVacinas.DeleteVacinaByLote);
+        builder.MapDelete("/{id:int}", DeleteVacinas.DeleteVacinaById);
+        builder.MapDelete("/lote/{lote:required}", DeleteVacinas.DeleteVacinaByLote);
         
-        return endpoints;
+        return builder;
     }
 }

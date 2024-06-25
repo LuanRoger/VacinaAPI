@@ -18,7 +18,9 @@ public class PostosRepository : IPostosRepository
             .ToListAsync();
 
     public async Task<PostoVacinacaoModel?> GetPostoById(int id) =>
-        await _dbDbContext.postosVacinacao.FindAsync(id);
+        await _dbDbContext.postosVacinacao
+            .Include(f => f.vacinas)
+            .FirstOrDefaultAsync(f => f.id == id);
 
     public async Task<PostoVacinacaoModel?> GetPostoByName(string name) =>
         await _dbDbContext.postosVacinacao.FirstOrDefaultAsync(f => f.name == name);

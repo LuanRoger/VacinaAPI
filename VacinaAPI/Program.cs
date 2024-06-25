@@ -1,5 +1,6 @@
 using Infrastructure;
 using VacinaAPI;
+using VacinaAPI.PostoVacinacao;
 using VacinaAPI.Vacinas;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
@@ -25,7 +26,14 @@ using (IServiceScope scope = app.Services.CreateScope())
 
 app.UseHttpsRedirection();
 
-RouteGroupBuilder vacinasGroup = app.MapGroup("/vacinas");
+RouteGroupBuilder vacinasGroup = app
+    .MapGroup("/vacinas")
+    .WithTags("Vacinas");
 vacinasGroup.MapVacinasEndpoints();
+
+RouteGroupBuilder postosGroup = app
+    .MapGroup("/postos")
+    .WithTags("Postos");
+postosGroup.MapPostosVacinacaoEndpoints();
 
 app.Run();

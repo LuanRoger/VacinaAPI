@@ -9,5 +9,6 @@ public class VacinaModelMapper : Profile
     public VacinaModelMapper()
     {
         CreateMap<VacinaModel, Vacina>();
+        CreateMap<Vacina, VacinaModel>();
     }
 }

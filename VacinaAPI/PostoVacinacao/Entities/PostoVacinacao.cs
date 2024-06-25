@@ -2,4 +2,4 @@
 
 namespace VacinaAPI.PostoVacinacao.Entities;
 
-public record PostoVacinacao(int id, string nome, List<Vacina> vacinas);
+public record PostoVacinacao(int id, string nome, List<VacinaPosto> vacinas);
