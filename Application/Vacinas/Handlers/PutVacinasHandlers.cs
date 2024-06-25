@@ -1,7 +1,10 @@
 ﻿using Application.Vacinas.Entities;
 using AutoMapper;
+using FluentValidation;
+using FluentValidation.Results;
 using Infrastructure.Models;
 using Infrastructure.Repositories;
+using ValidationException = Application.Exceptions.ValidationException;
 
 namespace Application.Vacinas.Handlers;
 
@@ -9,16 +12,25 @@ public class PutVacinasHandlers
 {
     private readonly IVacinasRepository _vacinasRepository;
     private readonly IMapper _mapper;
+    private readonly IValidator<UpdateVacinaByIdRequest> _updateVacinaByIdValidator;
 
-    public PutVacinasHandlers(IVacinasRepository vacinasRepository, IMapper mapper)
+    public PutVacinasHandlers(IVacinasRepository vacinasRepository, IMapper mapper,
+        IValidator<UpdateVacinaByIdRequest> updateVacinaByIdValidator)
     {
         _vacinasRepository = vacinasRepository;
         _mapper = mapper;
+        _updateVacinaByIdValidator = updateVacinaByIdValidator;
     }
     
     public async Task<Vacina?> UpdateVacinaById(UpdateVacinaByIdRequest request)
     {
-        //TODO: Validate request
+        ValidationResult? result = await _updateVacinaByIdValidator.ValidateAsync(request);
+        if (!result.IsValid)
+        {
+            ValidationException exception = new(result.Errors.Select(f => f.ErrorMessage));
+            throw exception;
+        }
+        
         VacinaModel? vacina = await _vacinasRepository.GetVacinaById(request.id);
         if (vacina is null)
             return null;

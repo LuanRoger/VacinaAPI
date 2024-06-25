@@ -1,5 +1,5 @@
+using Application;
 using Infrastructure;
-using VacinaAPI;
 using VacinaAPI.Endpoints.PostosVacinacao;
 using VacinaAPI.Endpoints.Vacinas;
 

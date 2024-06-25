@@ -1,4 +1,5 @@
-﻿using Application.Vacinas.Entities;
+﻿using Application.Exceptions;
+using Application.Vacinas.Entities;
 using Application.Vacinas.Handlers;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,7 +12,15 @@ public static class PostVacinas
         [FromBody] CreateVacinaRequest request,
         [FromServices] PostVacinasHandlers handlers)
     {
-        Vacina vacina = await handlers.PostVacina(request);
+        Vacina vacina;
+
+        try
+        {
+            vacina = await handlers.PostVacina(request);
+        }
+        catch (ValidationException e) { return Results.BadRequest(e.Message); }
+        catch (NotFoundException e) { return Results.NotFound(e.Message); }
+        catch (ResourceConflictException e) { return Results.Conflict(e.Message); }
         
         return Results.Created($"/vacinas/{vacina.id}", vacina);
     }

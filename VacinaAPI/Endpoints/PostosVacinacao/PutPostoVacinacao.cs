@@ -1,5 +1,6 @@
 ﻿using Application.PostoVacinacao.Entities;
 using Application.PostoVacinacao.Handlers;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using VacinaAPI.Exceptions;
 
@@ -17,7 +18,8 @@ public static class PutPostoVacinacao
         {
             posto = await handler.PutPosto(request);
         }
-        catch (SameNameException e) { return Results.BadRequest(e.Message); }
+        catch (Exception e) when (e is SameNameException or ValidationException) 
+        { return Results.BadRequest(e.Message); }
 
         return posto is not null ? Results.Ok(posto) : Results.NotFound();
     }

@@ -1,4 +1,5 @@
-﻿using Application.Vacinas.Entities;
+﻿using Application.Exceptions;
+using Application.Vacinas.Entities;
 using Application.Vacinas.Handlers;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,7 +12,12 @@ public static class PutVacinas
         [FromBody] UpdateVacinaByIdRequest request,
         [FromServices] PutVacinasHandlers handlers)
     {
-        Vacina? vacina = await handlers.UpdateVacinaById(request);
+        Vacina? vacina;
+        try
+        {
+            vacina = await handlers.UpdateVacinaById(request);
+        }
+        catch(ValidationException e) { return Results.BadRequest(e.Message); }
 
         return vacina is not null ? Results.Ok(vacina) : Results.NotFound();
     }
