@@ -25,6 +25,20 @@ public class PostosRepository : IPostosRepository
     public async Task<PostoVacinacaoModel?> GetPostoByName(string name) =>
         await _dbDbContext.postosVacinacao.FirstOrDefaultAsync(f => f.name == name);
 
+    public async Task<bool> HasVacinasRelatedById(int id) =>
+        await _dbDbContext.vacinas.AnyAsync(f => f.postoVacinacaoId == id);
+
+    public async Task<bool> HasVacinasRelatedByName(string name)
+    {
+        PostoVacinacaoModel? posto = await _dbDbContext.postosVacinacao
+            .Include(f => f.vacinas)
+            .FirstOrDefaultAsync(f => f.name == name);
+        if (posto is null)
+            return false;
+        
+        return posto.vacinas.Count > 0;
+    }
+
     public async Task<PostoVacinacaoModel> CreatePosto(PostoVacinacaoModel posto)
     {
         var newPostoEntity = await _dbDbContext.AddAsync(posto);

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Infrastructure.Models;
 using Infrastructure.Repositories;
+using VacinaAPI.Exceptions;
 using VacinaAPI.PostoVacinacao.Entities;
 
 namespace VacinaAPI.PostoVacinacao.Handlers;
@@ -16,7 +17,7 @@ public class PutPostosVacinacaoHandler
         _mapper = mapper;
     }
 
-    public async Task<Entities.PostoVacinacao?> PutPosto(UpdatePostoVacinacaoRequest request)
+    public async Task<PostoNVacina?> PutPosto(UpdatePostoVacinacaoRequest request)
     {
         //TODO: Validate
         
@@ -27,7 +28,10 @@ public class PutPostosVacinacaoHandler
         bool updated = false;
         if (request.nome is not null)
         {
-            //TODO: Ensure that the posto name no exists
+            PostoVacinacaoModel? postoWithName = await _postosRepository.GetPostoByName(request.nome);
+            if (postoWithName is not null)
+                throw new SameNameException(request.nome, "Posto");
+            
             posto.name = request.nome;
             updated = true;
         }
@@ -35,7 +39,7 @@ public class PutPostosVacinacaoHandler
         if(updated)
             await _postosRepository.FlushChanges();
         
-        Entities.PostoVacinacao postoRead = _mapper.Map<Entities.PostoVacinacao>(posto);
+        PostoNVacina postoRead = _mapper.Map<PostoNVacina>(posto);
         return postoRead;
     }
 }

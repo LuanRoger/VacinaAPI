@@ -14,9 +14,12 @@ public static class DependencyInjection
         services.AddScoped<GetVacinasHandlers>();
         services.AddScoped<PostVacinasHandlers>();
         services.AddScoped<DeleteVacinasHandlers>();
+        services.AddScoped<PutVacinasHandlers>();
 
         services.AddScoped<GetPostosVacinacaoHandler>();
         services.AddScoped<PostPostosVacinacaoHandler>();
+        services.AddScoped<PutPostosVacinacaoHandler>();
+        services.AddScoped<DeletePostoVacinacaoHandler>();
 
         return services;
     }

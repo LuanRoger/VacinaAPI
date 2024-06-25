@@ -10,6 +10,6 @@ public interface IVacinasRepository
     public Task<VacinaModel?> GetVacinaById(int id);
     public Task<VacinaModel> CreateVacina(VacinaModel vacina);
     public Task<int?> DeleteVacinaById(int id);
-    public Task<string?> DeleteVacinaByLote(string lote);
+    public Task<int?> DeleteVacinaByLote(string lote);
     public Task FlushChanges();
 }

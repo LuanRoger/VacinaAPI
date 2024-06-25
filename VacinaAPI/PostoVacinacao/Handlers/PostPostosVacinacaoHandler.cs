@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Infrastructure.Models;
 using Infrastructure.Repositories;
+using VacinaAPI.Exceptions;
 using VacinaAPI.PostoVacinacao.Entities;
 
 namespace VacinaAPI.PostoVacinacao.Handlers;
@@ -22,6 +23,11 @@ public class PostPostosVacinacaoHandler
         
         PostoVacinacaoModel postoModel = _mapper
             .Map<PostoVacinacaoModel>(request);
+        PostoVacinacaoModel? postoWithName = await _postosRepository.GetPostoByName(request.nome);
+
+        if (postoWithName is not null)
+            throw new SameNameException(request.nome, "Posto");
+        
         PostoVacinacaoModel newPosto = await _postosRepository.CreatePosto(postoModel);
         await _postosRepository.FlushChanges();
         

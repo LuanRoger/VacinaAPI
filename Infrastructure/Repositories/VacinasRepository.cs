@@ -65,7 +65,7 @@ public class VacinasRepository : IVacinasRepository
         return id;
     }
 
-    public async Task<string?> DeleteVacinaByLote(string lote)
+    public async Task<int?> DeleteVacinaByLote(string lote)
     {
         VacinaModel? vacina = await GetVacinaByLote(lote);
 
@@ -73,7 +73,7 @@ public class VacinasRepository : IVacinasRepository
             return null;
         
         _dbDbContext.vacinas.Remove(vacina);
-        return lote;
+        return vacina.id;
     }
 
     public Task FlushChanges() => _dbDbContext.SaveChangesAsync();

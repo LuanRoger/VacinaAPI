@@ -20,7 +20,7 @@ public static class DeleteVacinas
         [FromRoute] string lote,
         [FromServices] DeleteVacinasHandlers handlers)
     {
-        string? deletedVacinaLote = await handlers.DeleteVacinaByLote(lote);
+        int? deletedVacinaLote = await handlers.DeleteVacinaByLote(lote);
 
         return deletedVacinaLote is not null ? Results.Ok(deletedVacinaLote) : Results.NotFound();
     }

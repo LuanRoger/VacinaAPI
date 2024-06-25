@@ -4,11 +4,11 @@ public static class PostosVacinacaoEndpoints
 {
     public static IEndpointRouteBuilder MapPostosVacinacaoEndpoints(this IEndpointRouteBuilder builder)
     {
-        builder.MapGet("/{id:int}", GetPostoVacinacao.GetPostoById);
-        builder.MapGet("/{name:required}", GetPostoVacinacao.GetPostoByName);
+        builder.MapGet("/", GetPostoVacinacao.GetAllPostos);
+        builder.MapGet("/id/{id:int}", GetPostoVacinacao.GetPostoById);
 
         builder.MapPost("/", PostPostoVacinacao.PostPosto);
-
+        
         builder.MapPut("/", PutPostoVacinacao.PutPosto);
         
         builder.MapDelete("/{id:int}", DeletePostoVacinacao.DeletePostoById);

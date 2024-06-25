@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using VacinaAPI.Exceptions;
 using VacinaAPI.PostoVacinacao.Entities;
 using VacinaAPI.PostoVacinacao.Handlers;
 
@@ -11,7 +12,12 @@ public static class PostPostoVacinacao
         [FromBody] CreatePostoVacinacaoRequest request,
         [FromServices] PostPostosVacinacaoHandler handler)
     {
-        Entities.PostoVacinacao posto = await handler.PostPosto(request);
+        Entities.PostoVacinacao posto;
+        try
+        {
+            posto = await handler.PostPosto(request);   
+        }
+        catch (SameNameException e) { return Results.BadRequest(e.Message); }
 
         return Results.Created($"/postos/{posto.id}", posto);
     }

@@ -14,6 +14,16 @@ public class GetPostosVacinacaoHandler
         _postosRepository = postosRepository;
         _mapper = mapper;
     }
+
+    public async Task<IReadOnlyList<Entities.PostoNVacina>> GetAllPostos()
+    {
+        var postos = await _postosRepository.GetPostos();
+        var readPostos = postos
+            .Select(_mapper.Map<Entities.PostoNVacina>)
+            .ToList();
+        
+        return readPostos;
+    }
     
     public async Task<Entities.PostoVacinacao?> GetPostoById(int id)
     {

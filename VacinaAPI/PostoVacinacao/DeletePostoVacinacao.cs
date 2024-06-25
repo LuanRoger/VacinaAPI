@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using VacinaAPI.Exceptions;
 using VacinaAPI.PostoVacinacao.Handlers;
 
 namespace VacinaAPI.PostoVacinacao;
@@ -10,7 +11,16 @@ public static class DeletePostoVacinacao
         [FromRoute] int id,
         [FromServices] DeletePostoVacinacaoHandler handler)
     {
-        int? deletedId = await handler.DeletePostoById(id);
+        int? deletedId;
+        try
+        {
+            deletedId = await handler.DeletePostoById(id);
+        }
+        catch (CantDeleteRelationException e)
+        {
+            return Results.BadRequest(e.Message);
+        }
+        
 
         return deletedId is not null ? Results.Ok(deletedId) : Results.NotFound();
     }
@@ -20,7 +30,15 @@ public static class DeletePostoVacinacao
         [FromRoute] string name,
         [FromServices] DeletePostoVacinacaoHandler handler)
     {
-        int? deletedId = await handler.DeletePostoByName(name);
+        int? deletedId;
+        try
+        {
+            deletedId = await handler.DeletePostoByName(name);
+        }
+        catch(CantDeleteRelationException e)
+        {
+            return Results.BadRequest(e.Message);
+        }
 
         return deletedId is not null ? Results.Ok(deletedId) : Results.NotFound();
     }
