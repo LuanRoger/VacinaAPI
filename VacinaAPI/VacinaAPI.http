@@ -1,0 +1,93 @@
+@VacinaAPI_HostAddress = http://localhost:5205
+
+// Postos de Vacinacao
+
+GET {{VacinaAPI_HostAddress}}/postos/id/1
+Accept: application/json
+
+###
+
+GET {{VacinaAPI_HostAddress}}/postos/id/1
+Accept: application/json
+
+###
+
+POST {{VacinaAPI_HostAddress}}/postos
+Accept: application/json
+Content-Type: application/json
+
+{
+  "nome": "Novo Posto"
+}
+
+###
+
+PUT {{VacinaAPI_HostAddress}}/postos
+Accept: application/json
+Content-Type: application/json
+
+{
+  "id": 1,
+  "nome": "Novo Nome Posto"
+}
+
+###
+
+DELETE {{VacinaAPI_HostAddress}}/postos/1
+Accept: application/json
+Content-Type: application/json
+
+### // Vacinas
+
+GET {{VacinaAPI_HostAddress}}/vacinas/posto/1
+Content-Type: application/json
+
+###
+
+GET {{VacinaAPI_HostAddress}}/vacinas/1
+Content-Type: application/json
+
+###
+
+GET {{VacinaAPI_HostAddress}}/vacinas/lote/123
+Content-Type: application/json
+
+###
+
+POST {{VacinaAPI_HostAddress}}/vacinas/
+Accept: application/json
+Content-Type: application/json
+
+{
+  "nome": "Variola",
+  "fabricante": "Butantan",
+  "quantidade": 234,
+  "lote": "108",
+  "dataValidade": "2024-12-25T10:58:02.591551",
+  "idPosto": 1
+}
+
+###
+
+PUT {{VacinaAPI_HostAddress}}/vacinas/
+Accept: application/json
+Content-Type: application/json
+
+{
+  "id": 1,
+  "nome": "Vacina Atualizado",
+  "fabricante": "Fabricante Atualizado",
+  "quantidade": 100
+}
+
+###
+
+DELETE {{VacinaAPI_HostAddress}}/vacinas/1
+Accept: application/json
+Content-Type: application/json
+
+###
+
+DELETE {{VacinaAPI_HostAddress}}/vacinas/lote/864
+Accept: application/json
+Content-Type: application/json
