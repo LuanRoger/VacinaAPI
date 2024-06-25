@@ -34,7 +34,7 @@ public class GetVacinasHandlers
         if (vacina is null)
             return null;
         
-        Vacina? vacinaRead = _mapper.Map<Vacina>(vacina);
+        Vacina vacinaRead = _mapper.Map<Vacina>(vacina);
         return vacinaRead;
     }
 

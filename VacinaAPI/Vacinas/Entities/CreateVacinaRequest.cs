@@ -2,7 +2,7 @@
 
 public class CreateVacinaRequest
 {
-    public string name { get; set; }
+    public string nome { get; set; }
     public string fabricante { get; set; }
     public int quantidade { get; set; }
     public string lote { get; set; }

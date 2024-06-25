@@ -25,6 +25,16 @@ public class PutVacinasHandlers
         
         bool updated = false;
 
+        if (request.nome is not null)
+        {
+            vacina.nome = request.nome;
+            updated = true;
+        }
+        if (request.fabricante is not null)
+        {
+            vacina.fabricante = request.fabricante;
+            updated = true;
+        }
         if (request.quantidade.HasValue)
         {
             vacina.quantidade = request.quantidade.Value;

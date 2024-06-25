@@ -15,7 +15,9 @@ public class VacinasRepository : IVacinasRepository
     public async Task<IReadOnlyList<VacinaModel>?> GetPostoVacinas(int id)
     {
         PostoVacinacaoModel? posto = await _dbDbContext.postosVacinacao
-            .FindAsync(id);
+            .AsNoTracking()
+            .Include(f => f.vacinas)
+            .FirstOrDefaultAsync(f => f.id == id);
 
         var vacinas = posto?.vacinas.ToList();
         
@@ -23,7 +25,9 @@ public class VacinasRepository : IVacinasRepository
     }
 
     public async Task<VacinaModel?> GetVacinaById(int id) =>
-        await _dbDbContext.vacinas.FindAsync(id);
+        await _dbDbContext.vacinas
+            .Include(f => f.postoVacinacao)
+            .FirstOrDefaultAsync(f => f.id == id);
 
     public async Task<IReadOnlyList<VacinaModel>?> GetVacinasByFabricante(string fabricante)
     {

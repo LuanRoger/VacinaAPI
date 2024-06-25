@@ -6,11 +6,9 @@ public static class VacinasEndpoints
     {
         builder.MapGet("posto/{id:int}", GetVacinas.GetPostoVacinas);
         builder.MapGet("{id:int}", GetVacinas.GetVacinasById);
-        builder.MapGet("fabricante/{fabricante:required}", GetVacinas.GetVacinasByFabricante);
         builder.MapGet("lote/{lote:required}", GetVacinas.GetVacinasByLote);
 
         builder.MapPost("/", PostVacinas.PostVacina);
-
         builder.MapPut("/", PutVacinas.PutVacinaById);
         
         builder.MapDelete("/{id:int}", DeleteVacinas.DeleteVacinaById);

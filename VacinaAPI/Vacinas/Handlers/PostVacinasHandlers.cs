@@ -19,6 +19,8 @@ public class PostVacinasHandlers
     public async Task<Vacina> PostVacina(CreateVacinaRequest request)
     {
         //TODO: Validate request
+        //TODO: Ver se o posto existe
+        //TODO: Ver conflito de lote
         
         VacinaModel vacinaModel = _mapper.Map<VacinaModel>(request);
         VacinaModel createdVacina = await _vacinasRepository.CreateVacina(vacinaModel);
